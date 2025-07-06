@@ -1,0 +1,91 @@
+﻿<UserControl
+    x:Class="PQToolBoxCore.Views.Menu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:com="clr-namespace:PQToolBoxCore.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:hcd="https://handyorg.github.io/handycontrol/design"
+    xmlns:local="clr-namespace:PQToolBoxCore.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:vm="clr-namespace:PQToolBoxCore.ViewModels"
+    d:DataContext="{d:DesignInstance vm:MenuViewModel,
+                                     IsDesignTimeCreatable=True}"
+    d:Height="800"
+    d:Width="300"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d hcd">
+
+    <Border Style="{StaticResource BorderRegion}">
+        <hc:TransitioningContentControl>
+            <hc:SideMenu hcd:ExpandMode="ShowAll">
+                <hc:Interaction.Triggers>
+                    <hc:EventTrigger EventName="SelectionChanged">
+                        <hc:EventToCommand Command="{Binding SelectMenuCommand}" PassEventArgsToCommand="True" />
+                    </hc:EventTrigger>
+                </hc:Interaction.Triggers>
+                <com:PQSideMenuItem
+                    Header="{StaticResource Hot}"
+                    Image="/Resources/0.jpeg"
+                    ToolType="Hot" />
+                <com:PQSideMenuItem
+                    Header="{StaticResource Practical}"
+                    Image="/Resources/1.png"
+                    ToolType="Practical" />
+                <com:PQSideMenuItem
+                    Header="{StaticResource Media}"
+                    Image="/Resources/138.png"
+                    ToolType="Media" />
+                <com:PQSideMenuItem
+                    Header="{StaticResource AI}"
+                    Image="/Resources/20.png"
+                    ToolType="AI" />
+                <com:PQSideMenuItem
+                    Header="{StaticResource To}"
+                    Image="/Resources/30.png"
+                    ToolType="To" />
+                <com:PQSideMenuItem
+                    Header="{StaticResource Essential}"
+                    Image="/Resources/40.png"
+                    ToolType="Essential" />
+                <com:PQSideMenuItem
+                    Header="{StaticResource Treasure}"
+                    Image="/Resources/50.png"
+                    ToolType="Treasure" />
+                <com:PQSideMenuItem
+                    Header="{StaticResource Study}"
+                    Image="/Resources/60.jpg"
+                    ToolType="Study" />
+                <com:PQSideMenuItem
+                    Header="{StaticResource Resource}"
+                    Image="/Resources/70.png"
+                    ToolType="Resource" />
+                <com:PQSideMenuItem
+                    Header="{StaticResource Browser}"
+                    Image="/Resources/80.jpg"
+                    ToolType="Browser" />
+                <com:PQSideMenuItem
+                    Header="{StaticResource Search}"
+                    Image="/Resources/90.png"
+                    ToolType="Search" />
+                <com:PQSideMenuItem
+                    Header="{StaticResource Life}"
+                    Image="/Resources/100.jpg"
+                    ToolType="Life" />
+                <com:PQSideMenuItem
+                    Header="{StaticResource Program}"
+                    Image="/Resources/110.png"
+                    ToolType="Program" />
+                <com:PQSideMenuItem
+                    Header="{StaticResource Blog}"
+                    Image="/Resources/110.png"
+                    ToolType="Blog" />
+                <com:PQSideMenuItem
+                    Header="{StaticResource Entertainment}"
+                    Image="/Resources/120.png"
+                    ToolType="Entertainment" />
+            </hc:SideMenu>
+        </hc:TransitioningContentControl>
+    </Border>
+</UserControl>

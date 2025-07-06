@@ -1,0 +1,76 @@
+﻿<UserControl
+    x:Class="PQToolBoxCore.Views.Tools"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:com="clr-namespace:PQToolBoxCore.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:hcd="https://handyorg.github.io/handycontrol/design"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:PQToolBoxCore.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:prism="http://prismlibrary.com/"
+    xmlns:vm="clr-namespace:PQToolBoxCore.ViewModels"
+    d:DataContext="{d:DesignInstance vm:ToolsViewModel,
+                                     IsDesignTimeCreatable=True}"
+    d:Height="800"
+    d:Width="1200"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    mc:Ignorable="d hcd">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadToolsCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ContextMenu x:Key="toolMenu" Width="120">
+                <MenuItem
+                    Command="{Binding AddToolCommand}"
+                    Header="添加"
+                    Visibility="Collapsed" />
+                <MenuItem Command="{Binding ShowInfoCommand}" Header="查看信息" />
+            </ContextMenu>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border Style="{StaticResource BorderRegion}">
+        <hc:TransitioningContentControl>
+
+            <ScrollViewer Margin="10" VerticalScrollBarVisibility="Visible">
+                <ItemsControl Margin="5" ItemsSource="{Binding ToolInfos}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button
+                                Height="150"
+                                Margin="10"
+                                ContextMenu="{StaticResource toolMenu}">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseDoubleClick">
+                                        <i:InvokeCommandAction Command="{Binding GoToCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <StackPanel Orientation="Vertical">
+                                            <Image Width="120" Source="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=DataContext.Image}" />
+                                            <TextBlock
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Text="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=DataContext.Description}" />
+                                        </StackPanel>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </hc:TransitioningContentControl>
+    </Border>
+</UserControl>
